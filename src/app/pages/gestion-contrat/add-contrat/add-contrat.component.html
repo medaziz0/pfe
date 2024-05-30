@@ -1,0 +1,114 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url; background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white"></h1>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <h3 class="mb-0">Add Contrat</h3>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addcontratForm"> 
+            <!-- Address -->
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Identity</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Identity" value="" type="text" formControlName="identity">
+                  </div>
+                  <div
+                  *ngIf="
+                    addcontratForm.controls['identity'].invalid &&
+                    (addcontratForm.controls['identity'].touched ||
+                      addcontratForm.controls['identity'].dirty)
+                  "
+                >
+                  <div
+                    *ngIf="addcontratForm.controls['identity'].errors.required"
+                    class="text-center"
+                  >
+                    Identity is required
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Montant</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Montant" value="" type="number" formControlName="montant" >
+                  </div>
+                  <div
+                  *ngIf="
+                    addcontratForm.controls['montant'].invalid &&
+                    (addcontratForm.controls['montant'].touched ||
+                      addcontratForm.controls['montant'].dirty)
+                  "
+                >
+                  <div
+                    *ngIf="addcontratForm.controls['montant'].errors.required"
+                    class="text-center"
+                  >
+                    Montant is required
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-control-label" for="input-address">Ref Contrat</label>
+                  <input id="input-address" class="form-control form-control-alternative" placeholder="Montant" value="" type="text" formControlName="referenceContrat" >
+                </div>
+                <div
+                  *ngIf="
+                    addcontratForm.controls['referenceContrat'].invalid &&
+                    (addcontratForm.controls['referenceContrat'].touched ||
+                      addcontratForm.controls['referenceContrat'].dirty)
+                  "
+                >
+                  <div
+                    *ngIf="addcontratForm.controls['referenceContrat'].errors.required"
+                    class="text-center"
+                  >
+                  reference Contrat is required
+                  </div>
+                </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <select
+                  name=""
+                  id=""
+                  class="form-control"
+                  formControlName="aoId"
+                  (change)="selectAOId($event)"
+                >
+                  <option value="">Sélectionner un Appel Offre</option>
+                  <option [value]="p.id" *ngFor="let p of ao" style="color: black">
+                    {{ p.referenceAO }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <input type="submit" (click)="onSubmit()" class="btn btn btn-special" value="Add" />
+            </div>
+            <!-- Description -->
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

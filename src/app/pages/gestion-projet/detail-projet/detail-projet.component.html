@@ -1,0 +1,282 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row justify-content-center">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <div class="text-center">
+            <h3>Projet: {{ projet.intituly }}</h3>
+
+            <div class="mt-3">
+              <button
+                type="button"
+                class="btn btn-success mr-2"
+                style="
+                  background-color: #6c757d;
+                  border-color: #6c757d;
+                  color: #fff;
+                "
+                (click)="TableToShow(0)"
+              >
+                AppelOffre
+              </button>
+              <button
+                type="button"
+                class="btn btn-info mr-2"
+                style="
+                  background-color: #6c757d;
+                  border-color: #6c757d;
+                  color: #fff;
+                "
+                (click)="TableToShow(1)"
+              >
+                Contrat
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger"
+                style="
+                  background-color: #6c757d;
+                  border-color: #6c757d;
+                  color: #fff;
+                "
+                (click)="TableToShow(2)"
+              >
+                Facture
+              </button>
+
+              <!-- Définissez la couleur directement -->
+            </div>
+          </div>
+          
+        </div>
+
+        <div class="table-responsive" *ngIf="showTable == 0">
+          <button
+            type="button"
+            class="btn btn-outline-info"
+            style="position: absolute; margin-top: -70px; margin-left: 90%;"
+            [routerLink]="['/addao']"
+          >
+            <div>
+              <i class="ni ni-fat-add"></i>
+              <span></span>
+            </div>
+          </button>
+          <table class="table align-items-center table-flush">
+            
+            <thead>
+              <!-- <th>Projet ID</th> -->
+              <th>RefAO</th>
+              <th>Intitulé</th>
+              <th>Montant</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let o of filterAOTab">
+                <!-- <td>
+                  {{ o.projetId }}
+                </td> -->
+                <td>
+                  {{ o.referenceAO }}
+                </td>
+                <td>
+                  {{ o.identity }}
+                </td>
+                <td>
+                  {{ o.montant }}
+                </td>
+                
+
+                <td>
+                  <!-- <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="displayProjet(p.id)"
+                  >
+                    Display
+                  </button> -->
+
+                  <button
+                    type="button"
+                    class="btn btn-outline-success"
+                    (click)="editEmploi(o.id)"
+                  >
+                    <div>
+                      <i class="ni ni-bold-up"></i>
+                      <span></span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    (click)="deleteEmploi(o.id)"
+                  >
+                    <div>
+                      <i class="ni ni-bag-17"></i>
+                      <span></span>
+                    </div>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-responsive" *ngIf="showTable == 1">
+          <button
+            type="button"
+            class="btn btn-outline-info"
+            style="position: absolute; margin-top: -70px; margin-left: 90%;"
+            [routerLink]="['/addao']"
+          >
+            <div>
+              <i class="ni ni-fat-add"></i>
+              <span></span>
+            </div>
+          </button>
+          <table class="table align-items-center table-flush">
+            <thead>
+              <th>Contrats</th>
+              <th>Intitulé Offre</th>
+              <th>Montant</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let c of contratTabFilter">
+                <td style="font-weight: bold;">
+                  <span *ngFor="let elt of c.contrats">
+                    Identity Contrat : {{ elt.identity }} ===== Montant Contrat :{{elt.montant}}  ====== Ref Contrat : {{elt.referenceContrat}}
+                    <br />
+                  </span>
+                </td>
+                
+                <td>
+                  {{ c.ao.identity }}
+                </td>
+                <td>
+                  {{ c.ao.montant }}
+                </td>
+
+                <td>
+                  <!-- <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="displayProjet(p.id)"
+                  >
+                    Display
+                  </button> -->
+
+                  <button
+                    type="button"
+                    class="btn btn-outline-success"
+                    (click)="editContrat(c.id)"
+                  >
+                    <div>
+                      <i class="ni ni-bold-up"></i>
+                      <span></span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    (click)="deleteContrat(c.id)"
+                  >
+                    <div>
+                      <i class="ni ni-bag-17"></i>
+                      <span></span>
+                    </div>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-responsive" *ngIf="showTable == 2">
+          <button
+            type="button"
+            class="btn btn-outline-info"
+            style="position: absolute; margin-top: -70px; margin-left: 90%;"
+            [routerLink]="['/addao']"
+          >
+            <div>
+              <i class="ni ni-fat-add"></i>
+              <span></span>
+            </div>
+          </button>
+          <table class="table align-items-center table-flush">
+            <thead>
+              <th>Ref Facture</th>
+              <th>Montant Contrat</th>
+              <th>Identity Contrat</th>
+              <th>Factures</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let facture of factureTab">
+               
+                <td>
+                  {{ facture.contrat.referenceContrat }}
+                </td>
+                <td>
+                  {{ facture.contrat.montant }}
+                </td>
+                <td>
+                  {{ facture.contrat.identity }}
+                </td>
+                <td >
+                  <span *ngFor="let f of facture.factures"> 
+                    ref Fac ==== {{ f.referenceFacture }} <br>
+                    Montant Fac ==== {{ f.montant }} <br>
+                    Identity Fac ==== {{ f.identity }} <br><br>
+                  </span>
+                </td>
+                <td>
+                  <!-- <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="displayProjet(p.id)"
+                  >
+                    Display
+                  </button> -->
+
+                  <button
+                    type="button"
+                    class="btn btn-outline-success"
+                    (click)="editFacture(o.id)"
+                  >
+                    <div>
+                      <i class="ni ni-bold-up"></i>
+                      <span></span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    class="btn btn-outline-danger"
+                    (click)="deleteFacture(o.id)"
+                  >
+                    <div>
+                      <i class="ni ni-bag-17"></i>
+                      <span></span>
+                    </div>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Dark table -->
+</div>

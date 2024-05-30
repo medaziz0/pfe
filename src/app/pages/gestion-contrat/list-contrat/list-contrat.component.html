@@ -1,0 +1,69 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0 d-flex justify-content-between align-items-center">
+          <h3 class="mb-0">List Projets</h3>
+          <div>
+            <button type="button" class="btn btn-secondary ml-auto" >Ajouter</button>
+          </div>
+        </div> 
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">Project</th>
+                <th scope="col">Intitulé</th>
+                <th scope="col">Date Debut</th>
+                <th scope="col">Date Fin </th>
+                <th scope="col">Ref Projet</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of projetTab">
+                <th scope="row"> {{ p.id }}</th>
+                <td style="font-weight: bold;" (click)="displayProjet(p.id)">{{ p.intituly }}</td>
+                <td>{{ p.dateDebut }}</td>
+                <td>{{ p.dateFin }}</td>
+                <td>{{ p.projetRef }}</td>
+                <td>
+                  <!-- <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="displayProjet(p.id)"
+                  >
+                    Display
+                  </button> -->
+                  <button type="button" class="btn btn-info" (click)="editProjet(p.id)">
+                    Update
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteProjet(p.id)"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <!-- Dark table -->
+ 
+</div>

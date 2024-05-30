@@ -1,0 +1,277 @@
+<p-toast></p-toast>
+<div
+  class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+  style="
+    min-height: 600px;
+    background-image: url();
+    background-size: cover;
+    background-position: center top;
+  "
+>
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white"></h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <h3 class="mb-0">Add Projects</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addprojetForm">
+            <!-- Address -->
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address"
+                      >Intitulé</label
+                    >
+                    <input
+                      id="input-address"
+                      class="form-control form-control-alternative"
+                      placeholder="Intitulé"
+                      value=""
+                      type="text"
+                      formControlName="intituly"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      addprojetForm.controls['intituly'].invalid &&
+                      (addprojetForm.controls['intituly'].touched ||
+                        addprojetForm.controls['intituly'].dirty)
+                    "
+                  >
+                    <div
+                      *ngIf="addprojetForm.controls['intituly'].errors.required"
+                      class="text-center"
+                    >
+                      intituly is required
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address"
+                      >Date Debut</label
+                    >
+                    <input
+                      id="input-address"
+                      class="form-control form-control-alternative"
+                      placeholder="Home Address"
+                      value=""
+                      type="date"
+                      formControlName="dateDebut"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      addprojetForm.controls['dateDebut'].invalid &&
+                      (addprojetForm.controls['dateDebut'].touched ||
+                        addprojetForm.controls['dateDebut'].dirty)
+                    "
+                  >
+                    <div
+                      *ngIf="
+                        addprojetForm.controls['dateDebut'].errors.required
+                      "
+                      class="text-center"
+                    >
+                      date Debut is required
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address"
+                      >Date Fin</label
+                    >
+                    <input
+                      id="input-address"
+                      class="form-control form-control-alternative"
+                      placeholder="Home Address"
+                      value=""
+                      type="date"
+                      formControlName="dateFin"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      addprojetForm.controls['dateFin'].invalid &&
+                      (addprojetForm.controls['dateFin'].touched ||
+                        addprojetForm.controls['dateFin'].dirty)
+                    "
+                  >
+                    <div
+                      *ngIf="addprojetForm.controls['dateFin'].errors.required"
+                      class="text-center"
+                    >
+                      date Fin is required
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-description"
+                      >Description</label
+                    >
+                    <textarea
+                      id="input-description"
+                      class="form-control form-control-alternative"
+                      placeholder="Enter description"
+                      formControlName="description"
+                    ></textarea>
+                  </div>
+                  <div
+                    *ngIf="
+                      addprojetForm.controls['description'].invalid &&
+                      (addprojetForm.controls['description'].touched ||
+                        addprojetForm.controls['description'].dirty)
+                    "
+                  >
+                    <div
+                      *ngIf="
+                        addprojetForm.controls['description'].errors.required
+                      "
+                      class="text-center"
+                    >
+                      description is required
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address"
+                      >Cout</label
+                    >
+                    <input
+                      id="input-address"
+                      class="form-control form-control-alternative"
+                      placeholder="cout"
+                      value=""
+                      type="number"
+                      formControlName="cout"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      addprojetForm.controls['cout'].invalid &&
+                      (addprojetForm.controls['cout'].touched ||
+                        addprojetForm.controls['cout'].dirty)
+                    "
+                  >
+                    <div
+                      *ngIf="addprojetForm.controls['cout'].errors.required"
+                      class="text-center"
+                    >
+                      cout is required
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address"
+                      >Lieu</label
+                    >
+                    <input
+                      id="input-address"
+                      class="form-control form-control-alternative"
+                      placeholder="Lieu"
+                      value=""
+                      type="text"
+                      formControlName="lieu"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      addprojetForm.controls['lieu'].invalid &&
+                      (addprojetForm.controls['lieu'].touched ||
+                        addprojetForm.controls['lieu'].dirty)
+                    "
+                  >
+                    <div
+                      *ngIf="addprojetForm.controls['lieu'].errors.required"
+                      class="text-center"
+                    >
+                      lieu is required
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address"
+                      >Ref Projet</label
+                    >
+                    <input
+                      id="input-address"
+                      class="form-control form-control-alternative"
+                      placeholder="Ref Projet"
+                      value=""
+                      type="text"
+                      formControlName="projetRef"
+                    />
+                  </div>
+                  <div
+                    *ngIf="
+                      addprojetForm.controls['projetRef'].invalid &&
+                      (addprojetForm.controls['projetRef'].touched ||
+                        addprojetForm.controls['projetRef'].dirty)
+                    "
+                  >
+                    <div
+                      *ngIf="
+                        addprojetForm.controls['projetRef'].errors.required
+                      "
+                      class="text-center"
+                    >
+                      projetRef is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group text-center">
+              <input
+                type="submit"
+                (click)="showDialog()"
+                class="btn btn btn-special"
+                value="Add"
+              />
+            </div>
+            <!-- Description -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-dialog
+  header="Ajouter Localisation"
+  [modal]="display"
+  [(visible)]="display"
+  [style]="{ width: '27rem' }"
+>
+  <span class="p-text-secondary block mb-5"
+    >Voudrez vous choisir une localisation de se projet?</span
+  >
+  <div class="flex align-items-center gap-3 mb-3">
+    <label for="latitude" class="font-semibold w-6rem">Latitude</label>
+    <input pInputText id="latitude" class="flex-auto" autocomplete="off" [(ngModel)]="latitude" />
+  </div>
+  <div class="flex align-items-center gap-3 mb-5">
+    <label for="longitude" class="font-semibold w-6rem">Longitude</label>
+    <input pInputText id="longitude" class="flex-auto" autocomplete="off" [(ngModel)]="longitude" />
+  </div>
+  <div class="flex justify-content-start gap-2" style="margin-left: 200px">
+    <button pButton label="Save" (click)="onSubmit()"></button>
+    <button
+      pButton
+      label="Cancel"
+      severity="secondary"
+      (click)="onCancel()"
+      style="margin-left: 20px"
+    ></button>
+  </div>
+</p-dialog>

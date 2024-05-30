@@ -1,0 +1,173 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url; background-size: cover; background-position: center top;">
+  <!-- Mask -->
+  <span class="mask bg-gradient-danger opacity-8"></span>
+  <!-- Header container -->
+  <div class="container-fluid d-flex align-items-center">
+    <div class="row">
+      <div class="col-lg-7 col-md-10">
+        <h1 class="display-2 text-white"></h1>
+        
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt--7">
+  <div class="row">
+    
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-md-12">
+              <h3 class="mb-0">Edit Projects</h3>
+            </div>
+            
+          </div>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="editprojetForm"> 
+            <!-- Address -->
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Intitulé</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Intitulé" value="" type="text" formControlName="intituly">
+                  </div>
+                  <div
+                  *ngIf="
+                    editprojetForm.controls['intituly'].invalid &&
+                    (editprojetForm.controls['intituly'].touched ||
+                      editprojetForm.controls['intituly'].dirty)
+                  "
+                >
+                  <div
+                    *ngIf="editprojetForm.controls['intituly'].errors.required"
+                    class="text-center"
+                  >
+                    intituly is required
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Date Debut</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="" type="date" formControlName="dateDebut">
+                  </div>
+                  <div
+                  *ngIf="
+                    editprojetForm.controls['dateDebut'].invalid &&
+                    (editprojetForm.controls['dateDebut'].touched ||
+                      editprojetForm.controls['dateDebut'].dirty)
+                  "
+                >
+                  <div
+                    *ngIf="editprojetForm.controls['dateDebut'].errors.required"
+                    class="text-center"
+                  >
+                    date Debut is required
+                  </div>
+                </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Date Fin</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="" type="date" formControlName="dateFin">
+                  </div>
+                  <div
+        *ngIf="
+          editprojetForm.controls['dateFin'].invalid &&
+          (editprojetForm.controls['dateFin'].touched ||
+            editprojetForm.controls['dateFin'].dirty)
+        "
+      >
+        <div
+          *ngIf="editprojetForm.controls['dateFin'].errors.required"
+          class="text-center"
+        >
+          date Fin is required
+        </div>
+      </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Ref Projet</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Ref Projet" value="" type="text" formControlName="projetRef">
+                  </div>
+                  <div
+        *ngIf="
+          editprojetForm.controls['projetRef'].invalid &&
+          (editprojetForm.controls['projetRef'].touched ||
+            editprojetForm.controls['projetRef'].dirty)
+        "
+      >
+        <div
+          *ngIf="editprojetForm.controls['projetRef'].errors.required"
+          class="text-center"
+        >
+          projetRef is required
+        </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-description">Description</label>
+                    <textarea id="input-description" class="form-control form-control-alternative" placeholder="Enter description" formControlName="description"></textarea>
+                  </div> 
+                  <div
+        *ngIf="
+          editprojetForm.controls['description'].invalid &&
+          (editprojetForm.controls['description'].touched ||
+            editprojetForm.controls['description'].dirty)
+        "
+      >
+        <div
+          *ngIf="editprojetForm.controls['description'].errors.required"
+          class="text-center"
+        >
+          description is required
+        </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Cout</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Cout" value="" type="text" formControlName="cout">
+                  </div>
+                  <div
+        *ngIf="
+          editprojetForm.controls['cout'].invalid &&
+          (editprojetForm.controls['cout'].touched ||
+            editprojetForm.controls['cout'].dirty)
+        "
+      >
+        <div
+          *ngIf="editprojetForm.controls['cout'].errors.required"
+          class="text-center"
+        >
+          cout is required
+        </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="input-address">Lieu</label>
+                    <input id="input-address" class="form-control form-control-alternative" placeholder="Lieu" value="" type="text" formControlName="lieu">
+                  </div>
+                  <div
+        *ngIf="
+          editprojetForm.controls['lieu'].invalid &&
+          (editprojetForm.controls['lieu'].touched ||
+            editprojetForm.controls['lieu'].dirty)
+        "
+      >
+        <div
+          *ngIf="editprojetForm.controls['lieu'].errors.required"
+          class="text-center"
+        >
+          lieu is required
+        </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="form-group text-center">
+              <input type="submit" (click)="onSubmit()" class="btn btn btn-special" value="Add" />
+            </div>
+            <!-- Description -->
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
