@@ -16,6 +16,8 @@ import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
         BrowserAnimationsModule, 
         DialogModule,
         ButtonModule,
-        ToastModule
+        ToastModule,
+        MatButtonModule,
+        MatDialogModule
     ],
     providers: [MessageService,{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   schemas: [

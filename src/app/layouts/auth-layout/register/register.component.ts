@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { AuthentificationService } from 'src/app/services/authentification.service';
 
 @Component({
@@ -9,9 +10,9 @@ import { AuthentificationService } from 'src/app/services/authentification.servi
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  selectedRole: string = 'user';
   constructor(private authenService: AuthentificationService,
-    private formBuilder: FormBuilder,private router: Router,) { }
+    private formBuilder: FormBuilder,private router: Router,private messageService: MessageService) { }
     signupForm: FormGroup;
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
@@ -25,8 +26,9 @@ export class RegisterComponent implements OnInit {
   }
   submitForm() {
     console.log(this.signupForm.value);
-    this.signupForm.value.roles = ["admin", "user"];
-    this.authenService.signup(this.signupForm.value).subscribe((data) => {});
-    this.router.navigate(["projets"]);
+    this.signupForm.value.role = "user";
+    this.authenService.signup(this.signupForm.value).subscribe((data) => {
+      this.router.navigate(["login"]);
+    });
   }
 }

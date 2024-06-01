@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProjetService } from 'src/app/services/projet.service';
@@ -19,9 +19,12 @@ export class ListProjetComponent implements OnInit {
   
   customers!: Customer[];
   selectedCustomers!: Customer;
+  display: boolean;
   constructor(private myRouter: Router,
     private projetService: ProjetService,
-    private pServie: ProjetService) { }
+    private pServie: ProjetService,
+    private cdr: ChangeDetectorRef,
+  ) { }
 
   ngOnInit() {
     this.ProjetTab= JSON.parse(localStorage.getItem("projet") || "[]");
@@ -46,6 +49,8 @@ export class ListProjetComponent implements OnInit {
       this.projetService.getAllprojects().subscribe((data) => {
         console.log("Données après suppression :", data);
         this.projetTab = data;
+        this.display = false;
+        this.cdr.detectChanges();
       });
     });
   }
@@ -68,5 +73,11 @@ export class ListProjetComponent implements OnInit {
             return null;
     }
 }
-
+showDialog() {
+  this.display = true;
+}
+onCancel() {
+  this.display = false;
+  this.cdr.detectChanges();
+}
 }

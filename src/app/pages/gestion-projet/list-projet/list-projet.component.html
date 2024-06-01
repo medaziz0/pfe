@@ -64,14 +64,32 @@
                       <span></span>
                     </div>
                   </button>
-                  
-                  <button type="button" class="btn btn-outline-danger" (click)="deleteProjet(p.id)">
-                    <div>
-                      <i class="ni ni-bag-17"></i>
-                      <span></span>
-                    </div>
-                  </button>
-                  
+                 
+                    <button
+                      type="button"
+                      (click)="showDialog()"
+                      class="btn btn-outline-danger"
+                      value=""
+                      
+                    ><i class="ni ni-bold-up"></i></button>
+                    <p-dialog
+  header="Confirmer votre suppression"
+  [modal]="display"
+  [(visible)]="display"
+  [style]="{ width: '27rem' }"
+>
+<h1 mat-dialog-title style="color: #333; font-size: 24px; margin-bottom: 10px;">Confirmation de suppression</h1>
+<div mat-dialog-content style="color: #666; font-size: 16px; margin-bottom: 20px;">
+  Êtes-vous sûr de vouloir supprimer cet élément ?
+</div>
+<div mat-dialog-actions style="display: flex; justify-content: space-between;">
+  <button mat-button style="background-color: #fff; color: #ff5733; border: 1px solid #ff5733;" (click)="onCancel()">Annuler</button>
+  <button mat-button style="background-color: #ff5733; color: #fff;" (click)="deleteProjet(p.id)">Supprimer</button>
+</div>
+
+</p-dialog>
+                           
+              
                 </td>
               </tr>
             </tbody>
