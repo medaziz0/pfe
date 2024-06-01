@@ -23,7 +23,7 @@ export const ROUTES: RouteInfo[] = [
   },
   // { path: '/login', title: 'Login',  icon:'ni-key-25 text-info', class: '' },
   {
-    path: "/register",
+    path: "/user/list",
     title: "Gestion des utilisateurs",
     icon: "ni-circle-08 text-pink",
     class: "",

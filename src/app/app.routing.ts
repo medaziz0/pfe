@@ -62,11 +62,16 @@ const routes: Routes = [
             (m) => m.FactureModule
           ),
       },
+      {
+        path: "gestion-user",
+        loadChildren: () =>
+          import("./pages/gestion-user/gestion-user.module").then(
+            (m) => m.GestionUserModule
+          ),
+      },
     ],
   },
-  
 ];
-
 
 @NgModule({
   imports: [

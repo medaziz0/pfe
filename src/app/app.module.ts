@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ProjetModule } from './pages/gestion-projet/projet.module';
+import { GestionUserModule } from './pages/gestion-user/gestion-user.module';
 
 
 @NgModule({
@@ -26,12 +27,13 @@ import { ProjetModule } from './pages/gestion-projet/projet.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
-    ProjetModule
+    ProjetModule,
+    GestionUserModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]
