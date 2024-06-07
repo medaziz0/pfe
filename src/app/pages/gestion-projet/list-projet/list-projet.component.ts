@@ -16,10 +16,11 @@ export class ListProjetComponent implements OnInit {
   test: Date = new Date();
   addprojetForm: FormGroup;
   searchText:any;
-  
   customers!: Customer[];
   selectedCustomers!: Customer;
   display: boolean;
+
+
   constructor(private myRouter: Router,
     private projetService: ProjetService,
     private pServie: ProjetService,
@@ -27,7 +28,6 @@ export class ListProjetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.ProjetTab= JSON.parse(localStorage.getItem("projet") || "[]");
     this.projetService.getAllprojects().subscribe((data) => {
       // Assignation des données récupérées à la variable projetTab
       this.projetTab = data;

@@ -1,15 +1,88 @@
 <p-toast></p-toast>
-<div class="header bg-gradient-danger py-7 py-lg-8">
-  <div class="container">
-    <div class="header-body text-center mb-7">
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-6">
-          <h1 class="text-white">Welcome!</h1>
-          <p class="text-lead text-light">Use these awesome forms to login or create new account in your project for free.</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Title</title>
+  <style>
+    .py-7 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .py-lg-8 {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .text-white {
+      color: white;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-7 {
+      margin-bottom: 3rem;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .justify-content-center {
+      justify-content: center;
+    }
+
+    .col-lg-5, .col-md-6 {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 50%;
+    }
+
+    .header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 600px;
+      background-image: url(assets/img/theme/R.jpeg);
+      background-size: cover;
+      background-position: center top;
+    }
+
+    .header .mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #87cfeb00;
+      opacity: 0.8;
+    }
+
+    .header .container {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
+    <span class="mask bg-gradient opacity-8"></span>
+
+    <div class="container text-center">
+      <div class="header-body mb-7">
+        <div class="row justify-content-center">
+          <div class="col-lg-5 col-md-6">
+            <h1 class="text-white">Welcome!</h1>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  
+  
   <div class="separator separator-bottom separator-skew zindex-100">
     <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
@@ -22,22 +95,10 @@
   <div class="row justify-content-center">
     <div class="col-lg-6 col-md-8">
       <div class="card bg-secondary shadow border-0">
-        <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-4"><small>Sign up with</small></div>
-          <div class="text-center">
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon mr-4">
-              <span class="btn-inner--icon"><img src="assets/img/icons/common/github.svg"></span>
-              <span class="btn-inner--text">Github</span>
-            </a>
-            <a href="javascript:void(0)" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon"><img src="assets/img/icons/common/google.svg"></span>
-              <span class="btn-inner--text">Google</span>
-            </a>
-          </div>
-        </div>
+        
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
-            <small>Or sign up with credentials</small>
+            <small> sign up with credentials</small>
           </div>
           <form role="form"  [formGroup]="signupForm" (ngSubmit)="submitForm()">
             <div class="form-group">
@@ -162,8 +223,9 @@
               </div>
             </div>
             <div class="text-center">
-              <button type="button" class="btn btn-primary mt-4" (click)="submitForm()">Create account</button>
+              <button type="button" class="btn btn-primary mt-4" style="background-color: #87CEEB;" (click)="submitForm()">Create account</button>
             </div>
+            
           </form>
         </div>
       </div>

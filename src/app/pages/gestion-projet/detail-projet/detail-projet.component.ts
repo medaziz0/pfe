@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AoService } from "src/app/services/ao.service";
@@ -24,6 +24,15 @@ export class DetailProjetComponent implements OnInit {
   EmploiTable: any = [];
   FactureTable: any = [];
   ContratTable: any = [];
+  
+  displayAO: boolean = false;
+  displayContrat: boolean = false;
+  displayFacture: boolean = false;
+
+  contratToDeleteId: number;
+  aoToDeleteId: number;
+  factureToDeleteId: number;
+  projetToDeleteId: number;
   constructor(
     private activatedRoute: ActivatedRoute,
     private projetService: ProjetService,
@@ -31,7 +40,8 @@ export class DetailProjetComponent implements OnInit {
     private contratService: ContratService,
     private factureService: FactureService,
     private myRouter: Router,
-    private emploiService: AoService
+    private emploiService: AoService,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
@@ -70,6 +80,7 @@ export class DetailProjetComponent implements OnInit {
         });
       });
     });
+   
   }
 
   TableToShow(num: number) {
@@ -100,11 +111,14 @@ export class DetailProjetComponent implements OnInit {
   editEmploi(id: number) {
     this.myRouter.navigate([`editAO/${id}`]);
   }
-  deleteEmploi(id: number) {
-    this.emploiService.deleteEmploi(id).subscribe((response) => {
+  deleteEmploi() {
+    
+    this.emploiService.deleteEmploi(this.aoToDeleteId).subscribe((response) => {
       this.emploiService.getAllemploi().subscribe((data) => {
-        console.log("here data", data);
+        console.log("here data", this.contratTabFilter);
         this.EmploiTable = data;
+        this.displayAO = false;
+        this.cdr.detectChanges();
         window.location.reload();
       });
     });
@@ -113,26 +127,51 @@ export class DetailProjetComponent implements OnInit {
   editContrat(id: number) {
     this.myRouter.navigate([`editContrat/${id}`]);
   }
-  deleteContrat(id: number) {
-    this.contratService.deleteContrat(id).subscribe((response) => {
-      this.contratService.getAllcontrats().subscribe((data) => {
-        console.log("here data", data);
-        this.ContratTable = data;
-        window.location.reload();
+  deleteContrat() {
+      this.contratService.deleteContrat(this.contratToDeleteId).subscribe((response) => {
+        this.contratService.getAllcontrats().subscribe((data) => {
+          console.log("here data", data);
+          this.ContratTable = data;
+          this.displayContrat = false;
+          this.cdr.detectChanges();
+          window.location.reload();
+        });
       });
-    });
+
+  
   }
 
   editFacture(id: number) {
     this.myRouter.navigate([`editFacture/${id}`]);
   }
-  deleteFacture(id: number) {
-    this.factureService.deleteFacture(id).subscribe((response) => {
+  deleteFacture() {
+    this.factureService.deleteFacture(this.factureToDeleteId).subscribe((response) => {
       this.factureService.getAllfacture().subscribe((data) => {
         console.log("here data", data);
         this.FactureTable = data;
+       
         window.location.reload();
       });
     });
+  }
+
+  showAODialog(id: number) {
+    this.displayAO = true;
+    this.aoToDeleteId = id;
+  }
+  showContratDialog(id : number){
+    this.displayContrat = true;
+    this.contratToDeleteId = id;
+  }
+  showFactureDialog(id : number){
+    this.displayFacture = true;
+    this.factureToDeleteId = id;
+  }
+  
+  onCancel() {
+    this.displayAO = false;
+    this.displayContrat = false;
+    this.displayFacture = false;
+    this.cdr.detectChanges();
   }
 }

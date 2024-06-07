@@ -1,7 +1,79 @@
-<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
-  <div class="container-fluid">
-    <div class="header-body">
-      <!-- Card stats -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Title</title>
+  <style>
+    .py-7 {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+
+    .py-lg-8 {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .text-white {
+      color: white;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mb-7 {
+      margin-bottom: 3rem;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .justify-content-center {
+      justify-content: center;
+    }
+
+    .col-lg-5,
+    .col-md-6 {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 50%;
+    }
+
+    .header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 600px;
+      background-image: url(assets/img/theme/R.jpeg);
+      background-size: cover;
+      background-position: center top;
+    }
+
+    .header .mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #87cfeb00;
+      opacity: 0.8;
+    }
+
+    .header .container {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+</head>
+<div>
+  <div class="header bg-gradient pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+      </div>
     </div>
   </div>
 </div>
@@ -56,14 +128,13 @@
               <!-- Définissez la couleur directement -->
             </div>
           </div>
-          
         </div>
 
         <div class="table-responsive" *ngIf="showTable == 0">
           <button
             type="button"
             class="btn btn-outline-info"
-            style="position: absolute; margin-top: -70px; margin-left: 90%;"
+            style="position: absolute; margin-top: -70px; margin-left: 90%"
             [routerLink]="['/addao']"
           >
             <div>
@@ -72,7 +143,6 @@
             </div>
           </button>
           <table class="table align-items-center table-flush">
-            
             <thead>
               <!-- <th>Projet ID</th> -->
               <th>RefAO</th>
@@ -94,7 +164,6 @@
                 <td>
                   {{ o.montant }}
                 </td>
-                
 
                 <td>
                   <!-- <button
@@ -118,13 +187,11 @@
 
                   <button
                     type="button"
+                    (click)="showAODialog(o.id)"
                     class="btn btn-outline-danger"
-                    (click)="deleteEmploi(o.id)"
+                    value=""
                   >
-                    <div>
-                      <i class="ni ni-bag-17"></i>
-                      <span></span>
-                    </div>
+                    <i class="ni ni-bold-up"></i>
                   </button>
                 </td>
               </tr>
@@ -135,7 +202,7 @@
           <button
             type="button"
             class="btn btn-outline-info"
-            style="position: absolute; margin-top: -70px; margin-left: 90%;"
+            style="position: absolute; margin-top: -70px; margin-left: 90%"
             [routerLink]="['/addao']"
           >
             <div>
@@ -145,59 +212,47 @@
           </button>
           <table class="table align-items-center table-flush">
             <thead>
-              <th>Contrats</th>
-              <th>Intitulé Offre</th>
+              <th>Reference Contrat</th>
+              <th>Identité</th>
               <th>Montant</th>
               <th>Action</th>
             </thead>
             <tbody>
-              <tr *ngFor="let c of contratTabFilter">
-                <td style="font-weight: bold;">
-                  <span *ngFor="let elt of c.contrats">
-                    Identity Contrat : {{ elt.identity }} ===== Montant Contrat :{{elt.montant}}  ====== Ref Contrat : {{elt.referenceContrat}}
-                    <br />
-                  </span>
-                </td>
-                
-                <td>
-                  {{ c.ao.identity }}
-                </td>
-                <td>
-                  {{ c.ao.montant }}
-                </td>
-
-                <td>
-                  <!-- <button
-                    type="button"
-                    class="btn btn-success"
-                    (click)="displayProjet(p.id)"
-                  >
-                    Display
-                  </button> -->
-
-                  <button
-                    type="button"
-                    class="btn btn-outline-success"
-                    (click)="editContrat(c.id)"
-                  >
-                    <div>
-                      <i class="ni ni-bold-up"></i>
-                      <span></span>
-                    </div>
-                  </button>
-
-                  <button
-                    type="button"
-                    class="btn btn-outline-danger"
-                    (click)="deleteContrat(c.id)"
-                  >
-                    <div>
-                      <i class="ni ni-bag-17"></i>
-                      <span></span>
-                    </div>
-                  </button>
-                </td>
-              </tr>
+              <ng-container *ngFor="let c of contratTabFilter">
+                <ng-container *ngIf="c.contrats.length >= 1">
+                  <tr *ngFor="let contrat of c.contrats">
+                    <td>
+                      {{ contrat.referenceContrat }}
+                    </td>
+                    <td>
+                      {{ contrat.identity }}
+                    </td>
+                    <td>
+                      {{ contrat.montant }}
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-outline-success"
+                        (click)="editContrat(contrat.id)"
+                      >
+                        <div>
+                          <i class="ni ni-bold-up"></i>
+                          <span></span>
+                        </div>
+                      </button>
+                      <button
+                        type="button"
+                        (click)="showContratDialog(contrat.id)"
+                        class="btn btn-outline-danger"
+                        value=""
+                      >
+                        <i class="ni ni-bold-up"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </ng-container>
+              </ng-container>
             </tbody>
           </table>
         </div>
@@ -205,7 +260,7 @@
           <button
             type="button"
             class="btn btn-outline-info"
-            style="position: absolute; margin-top: -70px; margin-left: 90%;"
+            style="position: absolute; margin-top: -70px; margin-left: 90%"
             [routerLink]="['/addao']"
           >
             <div>
@@ -216,62 +271,46 @@
           <table class="table align-items-center table-flush">
             <thead>
               <th>Ref Facture</th>
-              <th>Montant Contrat</th>
-              <th>Identity Contrat</th>
-              <th>Factures</th>
+              <th>Identité</th>
+              <th>Montant</th>
               <th>Action</th>
             </thead>
             <tbody>
-              <tr *ngFor="let facture of factureTab">
-               
-                <td>
-                  {{ facture.contrat.referenceContrat }}
-                </td>
-                <td>
-                  {{ facture.contrat.montant }}
-                </td>
-                <td>
-                  {{ facture.contrat.identity }}
-                </td>
-                <td >
-                  <span *ngFor="let f of facture.factures"> 
-                    ref Fac ==== {{ f.referenceFacture }} <br>
-                    Montant Fac ==== {{ f.montant }} <br>
-                    Identity Fac ==== {{ f.identity }} <br><br>
-                  </span>
-                </td>
-                <td>
-                  <!-- <button
-                    type="button"
-                    class="btn btn-success"
-                    (click)="displayProjet(p.id)"
-                  >
-                    Display
-                  </button> -->
-
-                  <button
-                    type="button"
-                    class="btn btn-outline-success"
-                    (click)="editFacture(o.id)"
-                  >
-                    <div>
-                      <i class="ni ni-bold-up"></i>
-                      <span></span>
-                    </div>
-                  </button>
-
-                  <button
-                    type="button"
-                    class="btn btn-outline-danger"
-                    (click)="deleteFacture(o.id)"
-                  >
-                    <div>
-                      <i class="ni ni-bag-17"></i>
-                      <span></span>
-                    </div>
-                  </button>
-                </td>
-              </tr>
+              <ng-container *ngFor="let f of factureTab">
+                <ng-container *ngIf="f.factures.length >= 1">
+                  <tr *ngFor="let facture of f.factures">
+                    <td>
+                      {{ facture.referenceFacture }}
+                    </td>
+                    <td>
+                      {{ facture.identity }}
+                    </td>
+                    <td>
+                      {{ facture.montant }}
+                    </td>
+                    <td>
+                      <button
+                        type="button"
+                        class="btn btn-outline-success"
+                        (click)="editFacture(facture.id)"
+                      >
+                        <div>
+                          <i class="ni ni-bold-up"></i>
+                          <span></span>
+                        </div>
+                      </button>
+                      <button
+                        type="button"
+                        (click)="showFactureDialog(facture.id)"
+                        class="btn btn-outline-danger"
+                        value=""
+                      >
+                        <i class="ni ni-bold-up"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </ng-container>
+              </ng-container>
             </tbody>
           </table>
         </div>
@@ -280,3 +319,108 @@
   </div>
   <!-- Dark table -->
 </div>
+<p-dialog
+  header="Confirmer votre suppression"
+  [modal]="displayFacture"
+  [(visible)]="displayFacture"
+  [style]="{ width: '27rem' }"
+>
+  <h1
+    mat-dialog-title
+    style="color: #333; font-size: 24px; margin-bottom: 10px"
+  >
+    Confirmation de suppression
+  </h1>
+  <div
+    mat-dialog-content
+    style="color: #666; font-size: 16px; margin-bottom: 20px"
+  >
+    Êtes-vous sûr de vouloir supprimer cet élément ?
+  </div>
+  <div mat-dialog-actions style="display: flex; justify-content: space-between">
+    <button
+      mat-button
+      style="background-color: #fff; color: #ff5733; border: 1px solid #ff5733"
+      (click)="onCancel()"
+    >
+      Annuler
+    </button>
+    <button
+      mat-button
+      style="background-color: #ff5733; color: #fff"
+      (click)="deleteFacture()"
+    >
+      Supprimer
+    </button>
+  </div>
+</p-dialog>
+<p-dialog
+  header="Confirmer votre suppression"
+  [modal]="displayAO"
+  [(visible)]="displayAO"
+  [style]="{ width: '27rem' }"
+>
+  <h1
+    mat-dialog-title
+    style="color: #333; font-size: 24px; margin-bottom: 10px"
+  >
+    Confirmation de suppression
+  </h1>
+  <div
+    mat-dialog-content
+    style="color: #666; font-size: 16px; margin-bottom: 20px"
+  >
+    Êtes-vous sûr de vouloir supprimer cet élément ?
+  </div>
+  <div mat-dialog-actions style="display: flex; justify-content: space-between">
+    <button
+      mat-button
+      style="background-color: #fff; color: #ff5733; border: 1px solid #ff5733"
+      (click)="onCancel()"
+    >
+      Annuler
+    </button>
+    <button
+      mat-button
+      style="background-color: #ff5733; color: #fff"
+      (click)="deleteEmploi()"
+    >
+      Supprimer
+    </button>
+  </div>
+</p-dialog>
+<p-dialog
+  header="Confirmer votre suppression"
+  [modal]="displayContrat"
+  [(visible)]="displayContrat"
+  [style]="{ width: '27rem' }"
+>
+  <h1
+    mat-dialog-title
+    style="color: #333; font-size: 24px; margin-bottom: 10px"
+  >
+    Confirmation de suppression
+  </h1>
+  <div
+    mat-dialog-content
+    style="color: #666; font-size: 16px; margin-bottom: 20px"
+  >
+    Êtes-vous sûr de vouloir supprimer cet élément ?
+  </div>
+  <div mat-dialog-actions style="display: flex; justify-content: space-between">
+    <button
+      mat-button
+      style="background-color: #fff; color: #ff5733; border: 1px solid #ff5733"
+      (click)="onCancel()"
+    >
+      Annuler
+    </button>
+    <button
+      mat-button
+      style="background-color: #ff5733; color: #fff"
+      (click)="deleteContrat()"
+    >
+      Supprimer
+    </button>
+  </div>
+</p-dialog>
