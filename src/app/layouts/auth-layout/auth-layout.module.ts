@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -22,7 +23,8 @@ import { ToastModule } from 'primeng/toast';
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   providers: [MessageService,{ provide: LocationStrategy, useClass: HashLocationStrategy }],
 })

@@ -8,18 +8,19 @@ import { EditAOComponent } from '../gestion-ao/edit-ao/edit-ao.component';
 import { EditContratComponent } from '../gestion-contrat/edit-contrat/edit-contrat.component';
 import { EditFactureComponent } from '../gestion-facture/edit-facture/edit-facture.component';
 import { AddAOComponent } from '../gestion-ao/add-ao/add-ao.component';
+import { AuthguardService } from 'src/app/services/authguard.service';
 
 
 
 const routes: Routes = [
-  { path: '', component: AddProjetComponent },
-  { path: 'list', component: ListProjetComponent },
-  { path: 'detailProjet/:id', component: DetailProjetComponent },
-  { path: 'editProjet/:id', component: EditProjetComponent },
-  { path: 'editAO/:id', component: EditAOComponent },
-  { path: 'editContrat/:id', component: EditContratComponent },
-  { path: 'editFacture/:id', component: EditFactureComponent },
-  { path: 'addao', component: AddAOComponent },
+  { path: '', component: AddProjetComponent,canActivate: [AuthguardService] },
+  { path: 'list', component: ListProjetComponent,canActivate: [AuthguardService] },
+  { path: 'detailProjet/:id', component: DetailProjetComponent,canActivate: [AuthguardService] },
+  { path: 'editProjet/:id', component: EditProjetComponent,canActivate: [AuthguardService] },
+  { path: 'editAO/:id', component: EditAOComponent,canActivate: [AuthguardService] },
+  { path: 'editContrat/:id', component: EditContratComponent,canActivate: [AuthguardService] },
+  { path: 'editFacture/:id', component: EditFactureComponent,canActivate: [AuthguardService] },
+  { path: 'addao', component: AddAOComponent,canActivate: [AuthguardService] },
 
 ];
 

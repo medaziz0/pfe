@@ -17,7 +17,7 @@ export class MapsComponent implements OnInit {
 
   ngOnInit() {
     this.customIcon = L.icon({
-      iconUrl: 'assets/img/icons/marker-icon.png', // Use a relative path
+      iconUrl: 'assets/img/icons/marker-icon.png', 
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [0, -45],
@@ -42,7 +42,6 @@ export class MapsComponent implements OnInit {
       }).addTo(this.map);
     }
   }
-  ngOnChange() {}
   getMarkerByProject(mapByProject: any) {
     console.log("im here")
     this.map.eachLayer((layer) => {
