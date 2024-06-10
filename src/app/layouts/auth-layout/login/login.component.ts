@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private tokenStorage: TokenStorageService,
     private authService: AuthentificationService,
     private formBuilder: FormBuilder,
-    private messageService: MessageService
+    private messageService: MessageService,
   ) {}
 
   loginForm: FormGroup;

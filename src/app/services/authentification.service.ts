@@ -28,7 +28,4 @@ export class AuthentificationService {
 
     return this.http.post<any>(environment.apiURL + "api/auth/reset" ,{}, { params });
   }
-  isAuthenticated(){
-    return !!localStorage.getItem('auth-token');
-  }
 }
